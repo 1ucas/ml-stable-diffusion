@@ -10,7 +10,7 @@ import CoreML
 ///  [NumPy's older randomkit.c](https://github.com/numpy/numpy/blob/v1.0/numpy/random/mtrand/randomkit.c)
 ///
 @available(iOS 16.2, macOS 13.1, *)
-struct NumPyRandomSource: RandomNumberGenerator, RandomSource {
+public struct NumPyRandomSource: RandomNumberGenerator, RandomSource {
 
     struct State {
         var key = [UInt32](repeating: 0, count: 624)
@@ -25,7 +25,7 @@ struct NumPyRandomSource: RandomNumberGenerator, RandomSource {
     /// - Parameters
     ///     - seed: Seed for underlying Mersenne Twister 19937 generator
     /// - Returns random source
-    init(seed: UInt32) {
+    public init(seed: UInt32) {
         state = .init()
         var s = seed & 0xffffffff
         for i in 0 ..< state.key.count {

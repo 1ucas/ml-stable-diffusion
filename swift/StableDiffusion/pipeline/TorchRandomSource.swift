@@ -13,7 +13,7 @@ import CoreML
 ///  https://github.com/pytorch/pytorch/blob/master/aten/src/ATen/core/TransformationHelper.h
 ///
 @available(iOS 16.2, macOS 13.1, *)
-struct TorchRandomSource: RandomNumberGenerator, RandomSource {
+public struct TorchRandomSource: RandomNumberGenerator, RandomSource {
 
   struct State {
     var key = [UInt32](repeating: 0, count: 624)
@@ -28,7 +28,7 @@ struct TorchRandomSource: RandomNumberGenerator, RandomSource {
   /// - Parameters
   ///     - seed: Seed for underlying Mersenne Twister 19937 generator
   /// - Returns random source
-  init(seed: UInt32) {
+  public init(seed: UInt32) {
     state = .init()
     var s = seed & 0xffff_ffff
     for i in 0..<state.key.count {
