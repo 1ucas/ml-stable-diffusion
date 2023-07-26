@@ -69,7 +69,7 @@ public struct NumPyRandomSource: RandomNumberGenerator, RandomSource {
         return y
     }
 
-    mutating func next() -> UInt64 {
+    public mutating func next() -> UInt64 {
         let low = nextUInt32()
         let high = nextUInt32()
         return (UInt64(high) << 32) | UInt64(low)
@@ -102,7 +102,7 @@ public struct NumPyRandomSource: RandomNumberGenerator, RandomSource {
     }
 
     /// Generates a random value from a normal distribution with given mean and standard deviation.
-    mutating func nextNormal(mean: Double = 0.0, stdev: Double = 1.0) -> Double {
+    public mutating func nextNormal(mean: Double = 0.0, stdev: Double = 1.0) -> Double {
         nextGauss() * stdev + mean
     }
 
@@ -112,7 +112,7 @@ public struct NumPyRandomSource: RandomNumberGenerator, RandomSource {
     }
 
     /// Generate a shaped array with scalars from a normal distribution with given mean and standard deviation.
-    mutating func normalShapedArray(_ shape: [Int], mean: Double = 0.0, stdev: Double = 1.0) -> MLShapedArray<Double> {
+    public mutating func normalShapedArray(_ shape: [Int], mean: Double = 0.0, stdev: Double = 1.0) -> MLShapedArray<Double> {
         let count = shape.reduce(1, *)
         return .init(scalars: normalArray(count: count, mean: mean, stdev: stdev), shape: shape)
     }
